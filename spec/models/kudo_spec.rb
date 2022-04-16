@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Kudo, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'create kudos' do
+    kudo = build(:kudo)
+  end
+  
+ 
 end
