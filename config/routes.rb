@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   
   resources :kudos
 
-    root to: "kudos#index"
+    root to: 'welcome#index'
 end
