@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   devise_for :admins, path: 'admin', controllers: { sessions: "admins/sessions" }
 
   resources :kudos
+  get 'admin' => 'admins/pages#dashboard'
 
-   root to: 'welcome#index'
+
+  root to: 'kudos#index'
 end
