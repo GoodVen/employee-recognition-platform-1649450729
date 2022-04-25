@@ -1,10 +1,11 @@
 class KudosController < ApplicationController
 
   before_action :set_kudo, only: [:show, :edit, :update, :destroy]
-
+  #@kudos = Kudo.includes(:giver_email, :receiver_email)
   # GET /kudos
   def index
-    @kudos = Kudo.all
+    @kudos = Kudo.includes(:giver,:receiver).all
+
   end
 
   # GET /kudos/1

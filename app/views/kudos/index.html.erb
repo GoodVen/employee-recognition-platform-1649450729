@@ -44,12 +44,12 @@
 
 <br>
 
-<li><%= link_to 'New Kudo', new_kudo_path %></li>
+
 
 <ul>
   <% if employee_signed_in?%>
     <li><%= link_to 'Back', employee_path%></li>
-          
+    <li><%= link_to 'New Kudo', new_kudo_path %></li>      
   <%elsif admin_signed_in?%>
       <li><%= link_to 'Back', admin_path %></li>
   <%end%>
