@@ -13,6 +13,14 @@ RSpec.feature "Admins", type: :feature do
       end
       click_button 'Log in'
       expect(page).to have_content('Congratulate you are admin')
+      click_link 'Kudos'
+      expect(page).to have_content('Kudos')
+      find('tr', text: "8").click_link("Show")
+      expect(page).to have_content('Title')
+      click_link 'Destroy'
+      expect(page).to have_content('Kudos')
+      click_link 'Back'
+
       click_link 'Sign out'
       expect(page).to have_content('You need to sign in or sign up before continuing.')
 
