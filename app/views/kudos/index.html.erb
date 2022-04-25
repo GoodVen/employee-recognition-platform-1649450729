@@ -8,6 +8,11 @@
       <th>Content</th>
       <th>Giver</th>
       <th>Receiver</th>
+      <ul>
+          <% if admin_signed_in?%>
+            <th>Kudo Id</th>
+          <%end%>
+        </ul>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +24,13 @@
         <td><%= kudo.content %></td>
         <td><%= kudo.giver.email %></td>
         <td><%= kudo.receiver.email %></td>
+        <ul>
+          <% if admin_signed_in?%>
+            <td><%= kudo.id %></td>
+          <%end%>
+        </ul>
         <td><%= link_to 'Show', kudo %></td>
+        
         <ul>
           <% if employee_signed_in?%>
             <td><%= link_to 'Edit', edit_kudo_path(kudo) %></td>
