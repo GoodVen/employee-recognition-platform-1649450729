@@ -20,7 +20,11 @@
         <td><%= kudo.giver.email %></td>
         <td><%= kudo.receiver.email %></td>
         <td><%= link_to 'Show', kudo %></td>
-        <td><%= link_to 'Edit', edit_kudo_path(kudo) %></td>
+        <ul>
+          <% if employee_signed_in?%>
+            <td><%= link_to 'Edit', edit_kudo_path(kudo) %></td>
+          <%end%>
+        </ul>
         <td><%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -29,4 +33,13 @@
 
 <br>
 
-<%= link_to 'New Kudo', new_kudo_path %>
+<li><%= link_to 'New Kudo', new_kudo_path %></li>
+
+<ul>
+  <% if employee_signed_in?%>
+    <li><%= link_to 'Back', employee_path%></li>
+          
+  <%elsif admin_signed_in?%>
+      <li><%= link_to 'Back', admin_path %></li>
+  <%end%>
+  </ul>

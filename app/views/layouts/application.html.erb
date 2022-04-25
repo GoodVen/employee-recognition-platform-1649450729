@@ -14,23 +14,7 @@
     <h1><%= link_to 'Company', root_path %></h1>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <nav>
-      <h4>Navigation</h4>
-      <ul>
-        <% if employee_signed_in?%>
-          <li><%= link_to 'Sign out', destroy_employee_session_path, method: :delete%></li>
-          
-        <%elsif !admin_signed_in?%>
-          <li><%= link_to 'Sign in', new_employee_session_path %></li>
-        <%end%>
-        <% if admin_signed_in?%>
-          <li><%= link_to 'Sign out', destroy_admin_session_path, method: :delete%></li>
-          
-        <%elsif !employee_signed_in?%>
-          <li><%= link_to 'Sign in as Admin', new_admin_session_path %></li>
-        <%end%>
-      </ul>
-    </nav>
+
 
 
     <%= yield %>
