@@ -1,62 +1,78 @@
 # frozen_string_literal: true
 
-class Employees::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+module Employees
+  class RegistrationsController < Devise::RegistrationsController
+    # before_action :configure_sign_up_params, only: [:create]
+    # before_action :configure_account_update_params, only: [:update]
 
-  # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+    # GET /resource/sign_up
+    def new
+      @employee = Employee.new
+      # number_of_available_kudos = 9
+    end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+    # POST /resource
+    def create
+      @employee = Employee.new(employee_params)
+      @employee.number_of_available_kudos = 10
 
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
+      if @employee.save
+        redirect_to root_path, notice: 'Employee was successfully created.'
+      else
+        render :new
+      end
+    end
 
-  # PUT /resource
-  # def update
-  #   super
-  # end
+    # GET /resource/edit
+    # def edit
+    #   super
+    # end
 
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
+    # PUT /resource
+    # def update
+    #   super
+    # end
 
-  # GET /resource/cancel
-  # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
-  # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
-  # def cancel
-  #   super
-  # end
+    # DELETE /resource
+    # def destroy
+    #   super
+    # end
 
-  # protected
+    # GET /resource/cancel
+    # Forces the session data which is usually expired after sign
+    # in to be expired now. This is useful if the user wants to
+    # cancel oauth signing in/up in the middle of the process,
+    # removing all OAuth session data.
+    # def cancel
+    #   super
+    # end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+    # protected
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+    # If you have extra params to permit, append them to the sanitizer.
+    # def configure_sign_up_params
+    #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+    # end
 
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+    # If you have extra params to permit, append them to the sanitizer.
+    # def configure_account_update_params
+    #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+    # end
 
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+    # The path used after sign up.
+    # def after_sign_up_path_for(resource)
+    #   super(resource)
+    # end
+
+    # The path used after sign up for inactive accounts.
+    # def after_inactive_sign_up_path_for(resource)
+    #   super(resource)
+    # end
+
+    private
+
+    def employee_params
+      params.require(:employee).permit(:email, :password, :number_of_available_kudos)
+    end
+  end
 end

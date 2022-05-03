@@ -1,2 +1,4 @@
-module Admins::DashboardHelper
+module Admins
+  module DashboardHelper
+  end
 end

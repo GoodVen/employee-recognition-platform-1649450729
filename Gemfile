@@ -18,20 +18,20 @@ gem 'webpacker', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
-gem 'net-smtp' # to send email
 gem 'net-imap' # for rspec
 gem 'net-pop'  # for rspec
+gem 'net-smtp' # to send email
 
 group :development, :test do
   # Debugging tool
   gem 'pry-rails'
-  gem 'rubocop', '1.25.1'
+  gem 'rubocop', '1.25.1', require: false
   gem 'rubocop-rails', '2.13.2'
   gem 'rubocop-rspec', '2.8.0'
   # Tests
-  gem 'rspec-rails', '~> 5.0.0'
-  gem "factory_bot_rails"
   gem 'capybara'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 5.0.0'
 end
 
 group :development do

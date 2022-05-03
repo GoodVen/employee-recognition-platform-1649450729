@@ -1,0 +1,27 @@
+<%= form_with(model: employee) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this kudo from being saved:</h2>
+
+      <ul>
+        <% employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+    <%= form.label :number_of_available_kudos %>
+    <%= form.text_area :number_of_available_kudos %>
+  </div>
+
+ 
+
+ 
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,16 +1,16 @@
 class KudosController < ApplicationController
+  before_action :set_kudo, only: %i[show edit update destroy]
 
-  before_action :set_kudo, only: [:show, :edit, :update, :destroy]
-  #@kudos = Kudo.includes(:giver_email, :receiver_email)
   # GET /kudos
   def index
-    @kudos = Kudo.includes(:giver,:receiver).all
-
+    @kudos = Kudo.includes(:giver, :receiver).all
+    if employee_signed_in?
+      current_employee.number_of_available_kudos = current_employee.number_of_available_kudos - Kudo.where(giver: current_employee).count
+    end
   end
 
   # GET /kudos/1
-  def show
-  end
+  def show; end
 
   # GET /kudos/new
   def new
@@ -18,8 +18,7 @@ class KudosController < ApplicationController
   end
 
   # GET /kudos/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /kudos
   def create
@@ -27,6 +26,7 @@ class KudosController < ApplicationController
     @kudo.giver = current_employee
 
     if @kudo.save
+
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else
       render :new
@@ -35,27 +35,33 @@ class KudosController < ApplicationController
 
   # PATCH/PUT /kudos/1
   def update
-    if @kudo.update(kudo_params)
-      redirect_to @kudo, notice: 'Kudo was successfully updated.'
+    if @kudo.giver == current_employee
+      if @kudo.update(kudo_params)
+        redirect_to @kudo, notice: 'Kudo was successfully updated.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to kudos_path, notice: "You can't update this kudo"
     end
   end
 
   # DELETE /kudos/1
   def destroy
-    @kudo.destroy
-    redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
+
+      @kudo.destroy
+      redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_kudo
-      @kudo = Kudo.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def kudo_params
-      params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_kudo
+    @kudo = Kudo.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def kudo_params
+    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
+  end
 end
