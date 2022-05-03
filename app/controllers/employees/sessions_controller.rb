@@ -3,9 +3,9 @@
 module Employees
   class SessionsController < Devise::SessionsController
     # before_action :configure_sign_in_params, only: [:create]
-    #def after_sign_in_path_for(_current_employee)
-      #employee_path
-    #end
+    # def after_sign_in_path_for(_current_employee)
+    # employee_path
+    # end
 
     # GET /resource/sign_in
     # def new
@@ -16,10 +16,9 @@ module Employees
     def create
       @employee = Employee.new(employee_params)
       @employee = current_employee
-      #@employee.number_of_available_kudos = current_employee.number_of_available_kudos - Kudo.where(giver: current_employee).count
+      # @employee.number_of_available_kudos = current_employee.number_of_available_kudos - Kudo.where(giver: current_employee).count
       @employee.save(employee_params)
       redirect_to '/employee'
-      
     end
 
     # DELETE /resource/sign_out

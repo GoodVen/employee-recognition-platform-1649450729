@@ -48,9 +48,8 @@ class KudosController < ApplicationController
 
   # DELETE /kudos/1
   def destroy
-
-      @kudo.destroy
-      redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
+    @kudo.destroy
+    redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
   end
 
   private
