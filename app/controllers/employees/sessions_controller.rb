@@ -16,10 +16,12 @@ module Employees
     def create
       @employee = Employee.new(employee_params)
       @employee = current_employee
-      # @employee.number_of_available_kudos = current_employee.number_of_available_kudos - Kudo.where(giver: current_employee).count
-      @employee.save(employee_params)
+      @employee.number_of_available_kudos = current_employee.number_of_available_kudos - Kudo.where(giver: current_employee).count
+      @employee.save
       redirect_to '/employee'
     end
+
+    
 
     # DELETE /resource/sign_out
     # def destroy

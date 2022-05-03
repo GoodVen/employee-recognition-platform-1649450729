@@ -4,9 +4,7 @@ class KudosController < ApplicationController
   # GET /kudos
   def index
     @kudos = Kudo.includes(:giver, :receiver).all
-    if employee_signed_in?
-      current_employee.number_of_available_kudos = current_employee.number_of_available_kudos - Kudo.where(giver: current_employee).count
-    end
+    
   end
 
   # GET /kudos/1
@@ -26,6 +24,8 @@ class KudosController < ApplicationController
     @kudo.giver = current_employee
 
     if @kudo.save
+      current_employee.number_of_available_kudos-=1
+      current_employee.save
 
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else
@@ -49,7 +49,11 @@ class KudosController < ApplicationController
   # DELETE /kudos/1
   def destroy
     @kudo.destroy
+    
+    @kudo.giver.number_of_available_kudos+=1
+    @kudo.giver.save
     redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
+
   end
 
   private
