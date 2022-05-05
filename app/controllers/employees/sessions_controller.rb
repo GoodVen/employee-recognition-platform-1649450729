@@ -21,8 +21,6 @@ module Employees
       redirect_to '/employee'
     end
 
-    
-
     # DELETE /resource/sign_out
     # def destroy
     #   super

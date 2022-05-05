@@ -33,11 +33,11 @@ RSpec.describe 'Kudos', type: :feature do
       click_link 'Kudos'
       expect(page).to have_content('Number of available Kudos = 10')
       click_link 'New Kudo'
-      
+
       within('form') do
         fill_in 'Title', with: '1'
         fill_in 'Content', with: 'Hi employee'
-        select "testo4@test.com"
+        select 'testo4@test.com'
       end
       click_button 'Create Kudo'
       expect(page).to have_content('Kudo was successfully created.')

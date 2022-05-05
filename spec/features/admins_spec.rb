@@ -1,15 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Admins', type: :feature do
-  @admin = Admin.new(email:"admin1@test.com", password:'111111')
+  @admin = Admin.new(email: 'admin1@test.com', password: '111111')
   @admin.save
-  #@employee1 = Employee.create!(email:"test3@test.com", password:'111111', number_of_available_kudos: 10)
-  #@employee2 = Employee.create!(email:"test4@test.com", password:'111111', number_of_available_kudos: 10)
-  before(:each) do
-    kudo = create(:kudo, title: '7', content: 'dojij', giver: Employee.find_by(email: 'test3@test.com'), receiver: Employee.find_by(email: 'test2@test.com'))
-    @employee1 = Employee.create!(email:"test5@test.com", password:'111111', number_of_available_kudos: 10)
+  # @employee1 = Employee.create!(email:"test3@test.com", password:'111111', number_of_available_kudos: 10)
+  # @employee2 = Employee.create!(email:"test4@test.com", password:'111111', number_of_available_kudos: 10)
+  before do
+    kudo = create(:kudo, title: '7', content: 'dojij', giver: Employee.find_by(email: 'test3@test.com'),
+                         receiver: Employee.find_by(email: 'test2@test.com'))
+    @employee1 = Employee.create!(email: 'test5@test.com', password: '111111', number_of_available_kudos: 10)
   end
-  
+
   context 'log in as admin and RD kudo' do
     it 'is succesfull' do
       visit 'http://localhost:3000'

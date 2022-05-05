@@ -11,8 +11,7 @@ RSpec.describe 'Employees', type: :feature do
       end
       click_button 'Sign up'
       expect(page).to have_content('Employee was successfully created.')
-      
-      
+
       visit 'http://localhost:3000/employee/sign_in'
       within('form') do
         fill_in 'Email', with: 'testo5@test.com'
