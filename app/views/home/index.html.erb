@@ -1,0 +1,6 @@
+<h2>You signed in as <%=current_employee.email%></h2>
+<h4>Navigation</h4>
+<li><%= link_to 'Sign out', destroy_employee_session_path, method: :delete%>
+<h4>Max Kudos available:<%=current_employee.number_of_available_kudos%></h4>
+<h4>Kudos list:</h4>
+<li><%= link_to 'Kudos', kudos_path%></li>

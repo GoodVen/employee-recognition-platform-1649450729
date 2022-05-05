@@ -1,0 +1,10 @@
+<h3>Congratulate you are admin</h3>
+
+<h2>You signed in as <%=current_admin.email%></h2>
+
+<h4>Navigation</h4>
+<li><%= link_to 'Sign out', destroy_admin_session_path, method: :delete%></li>
+<h4>Kudos list:</h4>
+<li><%= link_to 'Kudos', kudos_path%></li>
+<h4>Employees list:</h4>
+<li><%= link_to 'Employees', employees_path%></li>
